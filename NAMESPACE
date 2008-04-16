@@ -1,0 +1,3 @@
+#useDynLib(gsarima)
+export(garsim, arrep)
+importFrom(MASS, rnegbin)
