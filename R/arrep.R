@@ -1,4 +1,5 @@
-arrep<-function(notation= "arima", phi=c(rep(0,10)), d=0, theta= c(rep(0,10)), Phi=c(rep(0,10)), D=0, Theta= c(rep(0,10)), frequency=1){
+`arrep` <-
+function(notation= "arima", phi=c(rep(0,10)), d=0, theta= c(rep(0,10)), Phi=c(rep(0,10)), D=0, Theta= c(rep(0,10)), frequency=1){
 	if(!is.null(phi)){ phi<-c(phi,rep(0,(10-length(phi))))}
 	if(!is.null(theta)){ theta<-c(theta,rep(0,(10-length(theta))))}
 	if(!is.null(Phi)){ Phi<-c(Phi,rep(0,(10-length(Phi))))}
@@ -26,8 +27,8 @@ arrep<-function(notation= "arima", phi=c(rep(0,10)), d=0, theta= c(rep(0,10)), P
 		ar[13]<- ar[12]*-theta[1] + ar[11]*-theta[2] + ar[10]*-theta[3] + ar[9]*-theta[4] + ar[8]*-theta[5] + ar[7]*-theta[6] + ar[6]*-theta[7] + ar[5]*-theta[8] + ar[4]*-theta[9] + ar[3]*-theta[10] + dif[2]*phi[10]
 		for(L in 14:(order+1)){
 			ar[L]<- ar[L-1]*-theta[1] + ar[L-2]*-theta[2] + ar[L-3]*-theta[3] + ar[L-4]*-theta[4] + ar[L-5]*-theta[5] + ar[L-6]*-theta[6] + ar[L-7]*-theta[7] + ar[L-8]*-theta[8] + ar[L-9]*-theta[9] + ar[L-10]*-theta[10]
-ar
 		}
+		ar
 	}
 	
 	order.sar<-max(trunc(1/(1- abs(Theta[1])^(1/23)))*frequency, 
@@ -58,7 +59,7 @@ ar
 	sar<-invert(phi=Phi, theta=Theta, d=D, order=trunc(order))
 	
 	#Combining the non-seasonal and seasonal components into a mixed ar model (mar)
-	#First pad the ar series with order*frequency leading 0’s.
+	#First pad the ar series with order*frequency leading 0<U+00ED>s.
 	ar.padded<-vector(length= (order*frequency+1 + order*frequency))
 	for(i in 1:(order*frequency)){
 		ar.padded[i]<-0
@@ -78,7 +79,7 @@ ar
 	for(n in 1: length(mar)){
 		seriesna[n]<-ifelse(abs(mar[n])<1.0e-10, NA, n)
 	}
-	last<-max(seriesna, na.rm=T)
+	last<-max(seriesna, na.rm=TRUE)
 	
 	if(notation == "arima") result<- mar[2:last]
 	if(notation == "dse1") result<- -mar[1:last]

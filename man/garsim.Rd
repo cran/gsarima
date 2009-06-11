@@ -137,5 +137,26 @@ garsim(n, phi, X = matrix(0, nrow = n), beta = as.matrix(0), sd = 1, family = "g
   y<-y.sim[(1+length(ar)):(N+length(ar))]
   tsy<-ts(y, freq=frequency)
   plot(tsy)
+
+  #Example of negative binomial GSARIMA(2,1,0,0,0,1)x
+  phi<-c(0.5,0.2)
+  theta<-c(0)
+  Theta<-c(0.5)
+  Phi<-c(0)
+  d<-c(1)
+  D<-c(0)
+  frequency<-12
+  ar<-arrep(phi=phi, theta=theta, Phi=Phi, Theta=Theta, frequency= frequency, d=d, D=D)
+  N<-c(1000)
+  intercept<-c(10)
+  x<- rnorm(N)
+  beta.x<-c(0.7)
+  X<-matrix(c(rep(log(intercept), N+length(ar)), rep(0, length(ar)), x), ncol=2)
+  c<-c(1)
+  y.sim <- garsim(n=(N+length(ar)), phi=ar, beta=c(1,beta.x), link= "log", family= "negative.binomial", zero.correction = "zq1", c=c, theta=5, X=X) 
+  y<-y.sim[(1+length(ar)):(N+length(ar))]
+  tsy<-ts(y, freq=frequency)
+  plot(tsy)
+  plot(log(tsy))
 }
 \keyword{ ts}

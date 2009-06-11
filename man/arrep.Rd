@@ -36,6 +36,7 @@ theta<-c(0.6, 0.2, 0.2)
 ar<-arrep(phi=phi, theta=theta, frequency=12)
 check<-(acf2AR(ARMAacf(ar=phi, ma=theta, lag.max = 100, pacf = FALSE))[100,1:length(ar)])
 as.data.frame(cbind(ar,check))
+
 phi<-c(0.2,0.5)
 theta<-c(0.4)
 Phi<-c(0.6)

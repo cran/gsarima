@@ -1,4 +1,5 @@
-garsim<-function(n,phi,X=matrix(0,nrow=n),beta=as.matrix(0), sd=1,
+`garsim` <-
+function(n,phi,X=matrix(0,nrow=n),beta=as.matrix(0), sd=1,
  family= "gaussian", transform.Xbeta= "identity", link= "identity",
  minimum=0, zero.correction= "zq1", c=1, theta=0){
 	# Initialize the parameters
