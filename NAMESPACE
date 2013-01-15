@@ -1,4 +1,2 @@
-#useDynLib(gsarima)
 export(garsim, arrep)
 importFrom(MASS, rnegbin)
-#importFrom(R2WinBUGS, bugs)

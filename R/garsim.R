@@ -56,8 +56,9 @@ function(n,phi,X=matrix(0,nrow=n),beta=as.matrix(0), sd=1,
 				else{
 					yphi<-t(y[(t-p):(t-1)])%*%rev(phi)
 					Xbetaphi<-t(-Xbeta[(t-p):(t-1)])%*%rev(phi)
-					m[t]<- max(yphi + Xbetaphi + Xbeta[t] ,minimum) #The max() is #to ensure m[t]>0, m[t] is not allowed to be <0, and for m[t]=0 all following simulated data will be #0.
-					y[t]<-rnegbin(1,m[t], theta)
+					m[t]<- max(yphi + Xbetaphi + Xbeta[t] ,minimum) 
+					#The max() is #to ensure m[t]>0, m[t] is #not allowed to be <0, and for m[t]=0 all following simulated #data will be #0.
+					y[t]<-rnegbin(1,m[t],theta)
 				}
 			}
 		}
@@ -96,7 +97,7 @@ function(n,phi,X=matrix(0,nrow=n),beta=as.matrix(0), sd=1,
 					}
 					else{
 						yphi<-t(log(y.transformed[(t-p):(t-1)]))%*%rev(phi)
-						xbetaphi<-t(-log(exp(Xbeta[(t-p):(t-1)])+c))%*%rev(phi)
+						Xbetaphi<-t(-log(exp(Xbeta[(t-p):(t-1)])+c))%*%rev(phi)
 						m[t]<- yphi + Xbetaphi + Xbeta[t]
 						lambda[t]<-exp(m[t])
 						y[t]<-rpois(1,lambda[t])

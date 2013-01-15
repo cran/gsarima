@@ -28,7 +28,7 @@ arrep(notation = "arima", phi = c(rep(0, 10)), d = 0, theta = c(rep(0, 10)), Phi
 A vector containing a truncated autoregressive representation of a SARIMA model. This can be used as input for the function gar.sim.
 }
 \references{ to be published }
-\author{ Olivier Briet \email{ o.briet.antispam.@gmail.com } }
+\author{ Olivier Briet \email{ o.briet@gmail.com } }
 \seealso{ 'garsim'. }
 \examples{
 phi<-c(0.5, 0.3, 0.1)

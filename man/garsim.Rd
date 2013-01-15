@@ -55,9 +55,8 @@ garsim(n, phi, X = matrix(0, nrow = n), beta = as.matrix(0), sd = 1, family = "g
 
   Grunwald G, Hyndman R, Tedesco L, Tweedie R: Non-Gaussian conditional linear AR(1) models. Australian & New Zealand Journal of Statistics 2000, 42:479-495. 
 }
-\author{ Olivier Briet \email{ o.briet.antispam.@gmail.com } }
-\note{ 
-}
+\author{ Olivier Briet \email{ o.briet@gmail.com } }
+\note{Version 0.1-2: bug corrected and garmaFit example given}
 \seealso{ 'rnegbin(MASS)', 'arrep'. }
 \examples{
   N<-1000
@@ -101,6 +100,7 @@ garsim(n, phi, X = matrix(0, nrow = n), beta = as.matrix(0), sd = 1, family = "g
   }
   arimares<-arima(tsy, order=c(1,1,0), xreg=Xreg)
   tsdiag(arimares)
+  arimares
 
   #Negative binomial simulation with covariate
   ar<-c(0.8)
@@ -111,7 +111,13 @@ garsim(n, phi, X = matrix(0, nrow = n), beta = as.matrix(0), sd = 1, family = "g
   y<-y.sim[(1+length(ar)):(N+length(ar))]
   tsy<-ts(y, freq=frequency)
   plot(tsy)
-
+  library(gamlss.util)
+  m10<-garmaFit(y~x-1, order=c(1,0), family=NBI, alpha=1)
+  sm10<-summary(m10)
+  sm10
+  1/sm10$sigma #compare with theta specified for negative binomial
+  
+    
   #Poisson ARMA(1,1) with identity link and negative auto correlation
   N<-500
   phi<-c(-0.8)
@@ -126,7 +132,7 @@ garsim(n, phi, X = matrix(0, nrow = n), beta = as.matrix(0), sd = 1, family = "g
   y<-y.sim[(1+length(ar)):(N+length(ar))]
   tsy<-ts(y, freq=frequency)
   plot(tsy)
-
+  
   #Poisson AR(1) with identity link and negative auto correlation
   N<-1000
   ar<-c(-0.8)
@@ -137,7 +143,7 @@ garsim(n, phi, X = matrix(0, nrow = n), beta = as.matrix(0), sd = 1, family = "g
   y<-y.sim[(1+length(ar)):(N+length(ar))]
   tsy<-ts(y, freq=frequency)
   plot(tsy)
-
+  
   #Example of negative binomial GSARIMA(2,1,0,0,0,1)x
   phi<-c(0.5,0.2)
   theta<-c(0)

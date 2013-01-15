@@ -11,17 +11,17 @@ Write SARIMA models in (finite) AR representation and simulate generalized multi
 \tabular{ll}{
 Package: \tab gsarima\cr
 Type: \tab Package\cr
-Version: \tab 0.0-2\cr
-Date: \tab 2009-06-12\cr
+Version: \tab 0.1-2\cr
+Date: \tab 2013-01-15\cr
 License: \tab GPL (>= 2)\cr
 LazyLoad: \tab yes\cr
 }
 Use arrep() for converting the SARIMA function into AR representation, and use garsim() to simulate.
 }
 \author{
-Olivier Briet <o.briet.antispam@gmail.com>
+Olivier Briet <o.briet@gmail.com>
 
-Maintainer: Olivier Briet <o.briet.antispam.@gmail.com>
+Maintainer: Olivier Briet <o.briet@gmail.com>
 }
 \references{
   Brandt PT, Williams JT: A linear Poisson autoregressive model: The PAR(p). Political Analysis 2001, 9.
