@@ -11,8 +11,8 @@ Write SARIMA models in (finite) AR representation and simulate generalized multi
 \tabular{ll}{
 Package: \tab gsarima\cr
 Type: \tab Package\cr
-Version: \tab 0.1-2\cr
-Date: \tab 2013-01-15\cr
+Version: \tab 0.1-3\cr
+Date: \tab 2013-01-16\cr
 License: \tab GPL (>= 2)\cr
 LazyLoad: \tab yes\cr
 }
