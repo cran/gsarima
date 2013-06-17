@@ -6,8 +6,8 @@
   Invert (invertible) SARIMA(p, d, q, P, D, Q) models to ar representation.
 }
 \usage{
-arrep(notation = "arima", phi = c(rep(0, 10)), d = 0, theta = c(rep(0, 10)), Phi = c(rep(0, 10)), D = 0, 
-	Theta = c(rep(0, 10)), frequency = 1)
+arrep(notation = "arima", phi = c(rep(0, 10)), d = 0, theta = c(rep(0, 10)),
+ Phi = c(rep(0, 10)), D = 0, Theta = c(rep(0, 10)), frequency = 1)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -27,7 +27,9 @@ arrep(notation = "arima", phi = c(rep(0, 10)), d = 0, theta = c(rep(0, 10)), Phi
 \value{
 A vector containing a truncated autoregressive representation of a SARIMA model. This can be used as input for the function gar.sim.
 }
-\references{ to be published }
+\references{ Briet, OJT, Amerasinghe PH, Vounatsou P: Generalized seasonal autoregressive integrated moving average
+	 models for count data with application to malaria time series with low case numbers.
+	 PLoS ONE, 2013, 8(6): e65761. doi:10.1371/journal.pone.0065761  \url{http://dx.plos.org/10.1371/journal.pone.0065761} If you use the gsarima package, please cite the above reference.}
 \author{ Olivier Briet \email{ o.briet@gmail.com } }
 \seealso{ 'garsim'. }
 \examples{

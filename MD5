@@ -1,7 +1,7 @@
-aab02dd6888093801dece12518b883ab *DESCRIPTION
+80b831dc81dac816cfe4f9d57e7253ef *DESCRIPTION
 144f4f245863b5be6adc277ef8da795d *NAMESPACE
 86fd04d8702144fc52ba6fb490edc0ad *R/arrep.R
 164df8e1441525209b5dc46f5721b498 *R/garsim.R
-5c8eedf34fc4c8b4365bf53da9680aab *man/arrep.Rd
-023a23ccbef6378b3d8b41dd6bf73630 *man/garsim.Rd
-048b115d1cefeda89f7d78caf9e7f073 *man/gsarima-package.Rd
+fe9ae163ac56c0a42ae10f02de415ff2 *man/arrep.Rd
+66b1a0885bf6a6cabc70401ec0f256af *man/garsim.Rd
+e6c36973282f4ca006f5307c969755d8 *man/gsarima-package.Rd

@@ -6,9 +6,9 @@
   Simulate a time series using a general autoregressive model.
 }
 \usage{
-garsim(n, phi, X = matrix(0, nrow = n), beta = as.matrix(0), sd = 1, family = "gaussian",
-	transform.Xbeta = "identity", link = "identity", minimum = 0, zero.correction = "zq1", 
-	c = 1, theta = 0)
+garsim(n, phi, X = matrix(0, nrow = n), beta = as.matrix(0), sd = 1, 
+	family = "gaussian", transform.Xbeta = "identity", link = "identity", 
+	minimum = 0, zero.correction = "zq1", c = 1, theta = 0)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -20,7 +20,10 @@ garsim(n, phi, X = matrix(0, nrow = n), beta = as.matrix(0), sd = 1, family = "g
   \item{family}{ Distribution family, defaults to "gaussian". }
   \item{transform.Xbeta}{ Optional transformation for the product of covariates and coefficients, see Details. }
   \item{link}{ The link function, defaults to "identity". }
-  \item{minimum}{ A minimum value for the mean parameter of the Poisson and Negative Binomialdistributions (only applicable for link= "identity" and family = c("poisson","negative.binomial"). Defaults to 0. A small positive value will allow non-stationary series to "grow" after encountering a simulated value of 0. }
+  \item{minimum}{ A minimum value for the mean parameter of the Poisson and Negative Binomialdistributions 
+  	(only applicable for link= "identity" and family = c("poisson","negative.binomial")). 
+  	Defaults to 0. A small positive value will allow non-stationary series to "grow" 
+  	after encountering a simulated value of 0. }
   \item{zero.correction}{ Method for transformation for dealing with zero values (only applicable when link = "log"), see Details. }
   \item{c}{ The constant used for transformation before taking the logarithm (only applicable when link = "log"). A value between 0 and 1 is recommended. }
   \item{theta}{ Parameter theta (for family = "negative.binomial"). }
@@ -39,7 +42,7 @@ garsim(n, phi, X = matrix(0, nrow = n), beta = as.matrix(0), sd = 1, family = "g
 
   Models 1 to 4 are within the family of GARMA models of Benjamin and colleagues 2003
   Model 2 is the extension to higher order p of a Poisson CLAR(1) model proposed by Grunwald and  colleagues (2000).
-  Model 3 is a modification of the PAR(p) data generating process (http://www.utdallas.edu/~pxb054000/code/pests.r) of Brandt and Williams (2001). Note that for psi = 0, the model reduces to a standard Poisson model with log-link function. For a model without external variables (only an intercept), the transformation of Xbeta has no consequence and then model 3 is the same as model 2.
+  Model 3 is a modification of the PAR(p) data generating process (\url{http://www.utdallas.edu/~pxb054000/code/pests.r}) of Brandt and Williams (2001). Note that for psi = 0, the model reduces to a standard Poisson model with log-link function. For a model without external variables (only an intercept), the transformation of Xbeta has no consequence and then model 3 is the same as model 2.
   Model 4 corresponds to model 2.2 of Zeger and Qaqish (1988). The value c is only added to values of zero prior to taking the log.
   Models 6 to 9 are similar but with negative binomial distribution
 
@@ -47,6 +50,10 @@ garsim(n, phi, X = matrix(0, nrow = n), beta = as.matrix(0), sd = 1, family = "g
 \value{  An autoregressive series of length n. Note that the first p data do not have autoregressive structure.
 }
 \references{
+  Briet, OJT, Amerasinghe PH, Vounatsou P: Generalized seasonal autoregressive integrated moving average
+	 models for count data with application to malaria time series with low case numbers.
+	 PLoS ONE, 2013, 8(6): e65761. doi:10.1371/journal.pone.0065761  \url{http://dx.plos.org/10.1371/journal.pone.0065761} If you use the gsarima package, please cite the above reference.
+	 
   Brandt PT, Williams JT: A linear Poisson autoregressive model: The PAR(p). Political Analysis 2001, 9.
 
   Benjamin MA, Rigby RA, Stasinopoulos DM: Generalized Autoregressive Moving Average Models. Journal of the American Statistical Association 2003, 98:214-223.
@@ -107,7 +114,8 @@ garsim(n, phi, X = matrix(0, nrow = n), beta = as.matrix(0), sd = 1, family = "g
   frequency<-1
   beta.x<-0.7
   X=matrix(c(rep(log(intercept), N+length(ar)), rep(0, length(ar)), x), ncol=2)
-  y.sim <- garsim(n=(N+length(ar)), phi=ar, beta=c(1,beta.x), link= "log", family=  "negative.binomial", zero.correction = "zq1", c=1, theta=5, X=X) 
+  y.sim <- garsim(n=(N+length(ar)), phi=ar, beta=c(1,beta.x), link= "log", 
+  	family= "negative.binomial", zero.correction = "zq1", c=1, theta=5, X=X) 
   y<-y.sim[(1+length(ar)):(N+length(ar))]
   tsy<-ts(y, freq=frequency)
   plot(tsy)
@@ -128,7 +136,8 @@ garsim(n, phi, X = matrix(0, nrow = n), beta = as.matrix(0), sd = 1, family = "g
   intercept<-100
   frequency<-1
   X=matrix(c(rep(intercept, N+length(ar))), ncol=1)
-  y.sim <- garsim(n=(N+length(ar)), phi=ar, beta=c(1), link= "identity", family= "poisson", minimum = -100, X=X) 
+  y.sim <- garsim(n=(N+length(ar)), phi=ar, beta=c(1), link= "identity", 
+  	family= "poisson", minimum = -100, X=X) 
   y<-y.sim[(1+length(ar)):(N+length(ar))]
   tsy<-ts(y, freq=frequency)
   plot(tsy)
@@ -139,7 +148,8 @@ garsim(n, phi, X = matrix(0, nrow = n), beta = as.matrix(0), sd = 1, family = "g
   intercept<-100
   frequency<-1
   X=matrix(c(rep(intercept, N+length(ar))), ncol=1)
-  y.sim <- garsim(n=(N+length(ar)), phi=ar, beta=c(1), link= "identity", family= "poisson", minimum = -100, X=X) 
+  y.sim <- garsim(n=(N+length(ar)), phi=ar, beta=c(1), link= "identity", 
+  	family= "poisson", minimum = -100, X=X) 
   y<-y.sim[(1+length(ar)):(N+length(ar))]
   tsy<-ts(y, freq=frequency)
   plot(tsy)
@@ -159,7 +169,8 @@ garsim(n, phi, X = matrix(0, nrow = n), beta = as.matrix(0), sd = 1, family = "g
   beta.x<-c(0.7)
   X<-matrix(c(rep(log(intercept), N+length(ar)), rep(0, length(ar)), x), ncol=2)
   c<-c(1)
-  y.sim <- garsim(n=(N+length(ar)), phi=ar, beta=c(1,beta.x), link= "log", family= "negative.binomial", zero.correction = "zq1", c=c, theta=5, X=X) 
+  y.sim <- garsim(n=(N+length(ar)), phi=ar, beta=c(1,beta.x), link= "log", 
+  	family= "negative.binomial", zero.correction = "zq1", c=c, theta=5, X=X) 
   y<-y.sim[(1+length(ar)):(N+length(ar))]
   tsy<-ts(y, freq=frequency)
   plot(tsy)
