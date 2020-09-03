@@ -42,7 +42,7 @@ garsim(n, phi, X = matrix(0, nrow = n), beta = as.matrix(0), sd = 1,
 
   Models 1 to 4 are within the family of GARMA models of Benjamin and colleagues 2003
   Model 2 is the extension to higher order p of a Poisson CLAR(1) model proposed by Grunwald and  colleagues (2000).
-  Model 3 is a modification of the PAR(p) data generating process (\url{http://www.utdallas.edu/~pxb054000/code/pests.r}) of Brandt and Williams (2001). Note that for psi = 0, the model reduces to a standard Poisson model with log-link function. For a model without external variables (only an intercept), the transformation of Xbeta has no consequence and then model 3 is the same as model 2.
+  Model 3 is a modification of the PAR(p) data generating process (\url{https://personal.utdallas.edu/~pxb054000/code/pests.r}) of Brandt and Williams (2001). Note that for psi = 0, the model reduces to a standard Poisson model with log-link function. For a model without external variables (only an intercept), the transformation of Xbeta has no consequence and then model 3 is the same as model 2.
   Model 4 corresponds to model 2.2 of Zeger and Qaqish (1988). The value c is only added to values of zero prior to taking the log.
   Models 6 to 9 are similar but with negative binomial distribution
 
@@ -50,9 +50,9 @@ garsim(n, phi, X = matrix(0, nrow = n), beta = as.matrix(0), sd = 1,
 \value{  An autoregressive series of length n. Note that the first p data do not have autoregressive structure.
 }
 \references{
-  Briet, OJT, Amerasinghe PH, Vounatsou P: Generalized seasonal autoregressive integrated moving average
+  Briet OJT, Amerasinghe PH, Vounatsou P: Generalized seasonal autoregressive integrated moving average
 	 models for count data with application to malaria time series with low case numbers.
-	 PLoS ONE, 2013, 8(6): e65761. doi:10.1371/journal.pone.0065761  \url{http://dx.plos.org/10.1371/journal.pone.0065761} If you use the gsarima package, please cite the above reference.
+	 PLoS ONE, 2013, 8(6): e65761. doi:10.1371/journal.pone.0065761  \url{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0065761} If you use the gsarima package, please cite the above reference.
 	 
   Brandt PT, Williams JT: A linear Poisson autoregressive model: The PAR(p). Political Analysis 2001, 9.
 
@@ -63,7 +63,7 @@ garsim(n, phi, X = matrix(0, nrow = n), beta = as.matrix(0), sd = 1,
   Grunwald G, Hyndman R, Tedesco L, Tweedie R: Non-Gaussian conditional linear AR(1) models. Australian & New Zealand Journal of Statistics 2000, 42:479-495. 
 }
 \author{ Olivier Briet \email{ o.briet@gmail.com } }
-\note{Version 0.1-2: bug corrected and garmaFit example given}
+\note{Version 0.1-2: bug corrected and garmaFit example given, Version 0.1-5: garmaFit example removed due to archiving of package gamlss.util}
 \seealso{ 'rnegbin(MASS)', 'arrep'. }
 \examples{
   N<-1000
@@ -119,11 +119,6 @@ garsim(n, phi, X = matrix(0, nrow = n), beta = as.matrix(0), sd = 1,
   y<-y.sim[(1+length(ar)):(N+length(ar))]
   tsy<-ts(y, freq=frequency)
   plot(tsy)
-  library(gamlss.util)
-  m10<-garmaFit(y~x-1, order=c(1,0), family=NBI, alpha=1)
-  sm10<-summary(m10)
-  sm10
-  1/sm10$sigma #compare with theta specified for negative binomial
   
     
   #Poisson ARMA(1,1) with identity link and negative auto correlation

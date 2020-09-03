@@ -1,2 +1,3 @@
 export(garsim, arrep)
 importFrom(MASS, rnegbin)
+importFrom(stats, rnorm, rpois)
